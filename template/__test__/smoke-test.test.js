@@ -1,0 +1,1 @@
+test("smoke test", () => {});
