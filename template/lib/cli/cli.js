@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+/* cli-gen: auto-generated, do not edit. */
 require("./globals"); // appends to 'global'; has side effects
 
 const path = require("path");
@@ -9,9 +10,7 @@ const { log } = global;
 async function _init() {
   const program = require("commander");
 
-  //
   // Load all modules using a naming convention for the 'commands' sub-folder.
-  //
   const cmdList = await fs.readdir(path.join(__dirname, "commands"));
   cmdList.forEach(command => {
     const cmdModule = require(path.join(

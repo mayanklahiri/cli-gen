@@ -1,3 +1,4 @@
+/* cli-gen: auto-generated, do not edit. */
 const pathUtil = require("../../util/path-util");
 const { libRoot, testRoot } = pathUtil;
 

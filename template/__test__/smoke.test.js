@@ -1,6 +1,5 @@
 const { log } = global;
 
 test("Smoke test.", () => {
-  log.debug("DEBUG message");
-  log.info("INFO message");
+  log.debug("Smoke test accessed logging system.");
 });
