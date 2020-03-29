@@ -8,6 +8,8 @@ const { combine, timestamp, printf } = winston.format;
 
 const { getCallStack } = require("../../util/caller");
 
+const LOG_FLUSH_WAIT_MS = 200;
+
 (function _initLogging() {
   const env = process.env;
   const isProd = env.NODE_ENV === "production";
@@ -66,10 +68,16 @@ const { getCallStack } = require("../../util/caller");
       return baseLogger.debug(...a, stack);
     },
     async flush() {
-      ended = true;
       return new Promise(resolve => {
-        transports.forEach(t => t.end());
-        baseLogger.on("finish", resolve);
+        if (ended) return;
+        setTimeout(() => {
+          ended = true;
+          transports.forEach(t => t.end());
+          baseLogger.end();
+          baseLogger.once("finish", () => {
+            resolve();
+          });
+        }, LOG_FLUSH_WAIT_MS);
       });
     }
   };
