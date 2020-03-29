@@ -1,3 +1,5 @@
+/* cli-gen: auto-generated, do not edit. */
+
 const col = require("chalk");
 
 const { pathUtil } = global;

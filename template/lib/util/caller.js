@@ -1,3 +1,4 @@
+/* cli-gen: auto-generated, do not edit. */
 const path = require("path");
 
 const BASE_PATH = path.resolve(__dirname, "..", "..");

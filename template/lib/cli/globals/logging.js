@@ -1,3 +1,5 @@
+/* cli-gen: auto-generated, do not edit. */
+
 const path = require("path");
 
 const col = require("chalk");
