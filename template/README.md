@@ -20,3 +20,4 @@
 - `LOG_FORMAT`: either `json` or `text`
 - `LOG_FILE`: if set, path to a file to write log messages to rather than stdout.
 - `LOG_LEVEL`: minimum log level from: `info`, `error`, `debug`
+- `FORCE_COLOR`: set to 0 to disable colorized logs, set to 1 to force.

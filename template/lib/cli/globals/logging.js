@@ -1,5 +1,9 @@
+const path = require("path");
+
+const col = require("chalk");
 const winston = require("winston");
 const { combine, timestamp, printf } = winston.format;
+
 const { getCallStack } = require("../../util/caller");
 
 (function _initLogging() {
@@ -12,10 +16,15 @@ const { getCallStack } = require("../../util/caller");
   const baseFormatter = combine(
     timestamp(),
     printf(({ level, message, module: moduleName, line, timestamp }) => {
+      const moduleNameFormatted = logFile
+        ? moduleName
+        : path.basename(moduleName);
       const parts = [
         timestamp,
         level,
-        moduleName ? `[${moduleName}:${line}]` : null,
+        moduleNameFormatted
+          ? col.gray(`[${moduleNameFormatted}:${line}]`)
+          : null,
         message
       ].filter(x => x);
       return parts.join(" ");

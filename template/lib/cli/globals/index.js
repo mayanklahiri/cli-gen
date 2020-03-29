@@ -3,3 +3,4 @@
 //
 require("./base");
 require("./logging");
+module.exports = global;

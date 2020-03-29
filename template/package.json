@@ -1,8 +1,8 @@
 {
-  "name": "scisurf",
+  "name": "cli-gen-template",
   "bin": "lib/cli/cli.js",
   "version": "1.0.0",
-  "description": "scisurf",
+  "description": "cli-gen template",
   "engines": {
     "node": ">=13.6.0"
   },
