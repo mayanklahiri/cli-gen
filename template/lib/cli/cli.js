@@ -27,14 +27,9 @@ async function _init() {
 }
 
 if (require.main === module) {
-  _init()
-    .catch(async e => {
-      log.error(e);
-      await log.flush();
-      process.exit(-1);
-    })
-    .then(async () => {
-      await log.flush();
-      process.exit(0);
-    });
+  _init().catch(async e => {
+    log.error(e);
+    await log.flush();
+    process.exit(-1);
+  });
 }
