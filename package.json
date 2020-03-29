@@ -1,11 +1,11 @@
 {
   "name": "cli-gen",
   "bin": "lib/cli-gen.js",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Dependency-free, opinionated node.js CLI skeleton generator.",
   "main": "lib/cli-gen.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"No tests.\""
   },
   "repository": {
     "type": "git",
@@ -26,12 +26,5 @@
     "url": "https://github.com/mayanklahiri/cli-gen/issues"
   },
   "homepage": "https://github.com/mayanklahiri/cli-gen#readme",
-  "dependencies": {
-    "async": "^3.2.0",
-    "chalk": "^3.0.0",
-    "commander": "^5.0.0",
-    "jest": "^25.2.3",
-    "lodash": "^4.17.15",
-    "winston": "^3.2.1"
-  }
+  "dependencies": {}
 }
