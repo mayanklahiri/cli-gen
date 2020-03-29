@@ -14,7 +14,7 @@ async function main() {
     [
       `Package: ${col.yellow(pathUtil.pkgJson().name)}`,
       `Package version: ${col.yellow(pathUtil.pkgJson().version)}`,
-      `Node version: ${process.version}`,
+      `Node version: ${process.version.slice(1)}`,
       `Package dir: ${pathUtil.basePkgPath()}`,
       `Working dir: ${process.cwd()}`
     ].join("\n") + "\n"
