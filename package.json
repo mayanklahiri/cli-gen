@@ -1,0 +1,37 @@
+{
+  "name": "cli-gen",
+  "bin": "lib/cli-gen.js",
+  "version": "1.0.0",
+  "description": "Dependency-free, opinionated node.js CLI skeleton generator.",
+  "main": "lib/cli-gen.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mayanklahiri/cli-gen.git"
+  },
+  "keywords": [
+    "opinionated",
+    "generator",
+    "bootstrapper",
+    "skeleton",
+    "logging",
+    "cli",
+    "subcommands"
+  ],
+  "author": "Mayank Lahiri <mlahiri@gmail.com>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/mayanklahiri/cli-gen/issues"
+  },
+  "homepage": "https://github.com/mayanklahiri/cli-gen#readme",
+  "dependencies": {
+    "async": "^3.2.0",
+    "chalk": "^3.0.0",
+    "commander": "^5.0.0",
+    "jest": "^25.2.3",
+    "lodash": "^4.17.15",
+    "winston": "^3.2.1"
+  }
+}
