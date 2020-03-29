@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /* cli-gen: auto-generated, do not edit. */
-require("./globals"); // appends to 'global'; has side effects
+require("./globals"); // modifies 'global'; has side effects
 
 const path = require("path");
 const fs = require("fs").promises;
@@ -17,7 +17,7 @@ async function _init() {
       __dirname,
       "commands",
       command,
-      `cmd-${command}.js`
+      `index.js`
     ));
     cmdModule(program);
   });
