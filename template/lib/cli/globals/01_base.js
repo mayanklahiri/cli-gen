@@ -11,3 +11,6 @@ global.prettyJson = v => JSON.stringify(v, null, 2);
 
 // Filesystem shortcuts
 global.pathUtil = pathUtil;
+
+// Console colors
+global.col = require("chalk");

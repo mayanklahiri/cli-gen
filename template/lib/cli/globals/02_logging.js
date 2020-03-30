@@ -20,9 +20,12 @@ const LOG_FLUSH_WAIT_MS = 200;
   const baseFormatter = combine(
     timestamp(),
     printf(({ level, message, module: moduleName, line, timestamp }) => {
-      const moduleNameFormatted = logFile
-        ? moduleName
-        : path.basename(moduleName);
+      let moduleNameFormatted;
+      try {
+        moduleNameFormatted = logFile ? moduleName : path.basename(moduleName);
+      } catch (e) {
+        moduleNameFormatted = "<unknown>";
+      }
       const parts = [
         timestamp,
         level,
@@ -57,6 +60,11 @@ const LOG_FLUSH_WAIT_MS = 200;
       const stack = getCallStack(__filename);
       return baseLogger.info(...a, stack);
     },
+    warn(...a) {
+      if (ended) return;
+      const stack = getCallStack(__filename);
+      return baseLogger.warn(...a, stack);
+    },
     error(...a) {
       if (ended) return;
       const stack = getCallStack(__filename);
@@ -66,6 +74,11 @@ const LOG_FLUSH_WAIT_MS = 200;
       if (ended) return;
       const stack = getCallStack(__filename);
       return baseLogger.debug(...a, stack);
+    },
+    trace(...a) {
+      if (ended) return;
+      const stack = getCallStack(__filename);
+      return baseLogger.trace(...a, stack);
     },
     async flush() {
       return new Promise(resolve => {

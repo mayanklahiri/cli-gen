@@ -8,8 +8,8 @@ module.exports = async function main() {
     [
       `Package: ${col.yellow(pathUtil.pkgJson().name)}`,
       `Package version: ${col.yellow(pathUtil.pkgJson().version)}`,
-      `Node version: ${col.gray(process.version.slice(1))}`,
-      `Package dir: ${col.gray(pathUtil.basePkgPath())}`
+      `Node version: ${col.yellow(process.version.slice(1))}`,
+      `Package dir: ${col.yellow(pathUtil.basePkgPath())}`
     ].join("\n") + "\n"
   );
 };

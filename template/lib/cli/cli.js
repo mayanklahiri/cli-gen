@@ -5,20 +5,16 @@ require("./globals"); // modifies 'global'; has side effects
 const path = require("path");
 const fs = require("fs").promises;
 
+const program = require("commander");
+
 const { log } = global;
 
 async function _init() {
-  const program = require("commander");
-
   // Load all modules using a naming convention for the 'commands' sub-folder.
-  const cmdList = await fs.readdir(path.join(__dirname, "commands"));
+  const cmdRoot = path.join(__dirname, "commands");
+  const cmdList = await fs.readdir(cmdRoot);
   cmdList.forEach(command => {
-    const cmdModule = require(path.join(
-      __dirname,
-      "commands",
-      command,
-      `index.js`
-    ));
+    const cmdModule = require(path.join(cmdRoot, command));
     cmdModule(program);
   });
 
