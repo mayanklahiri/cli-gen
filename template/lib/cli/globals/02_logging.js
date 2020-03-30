@@ -20,9 +20,12 @@ const LOG_FLUSH_WAIT_MS = 200;
   const baseFormatter = combine(
     timestamp(),
     printf(({ level, message, module: moduleName, line, timestamp }) => {
-      const moduleNameFormatted = logFile
-        ? moduleName
-        : path.basename(moduleName);
+      let moduleNameFormatted;
+      try {
+        moduleNameFormatted = logFile ? moduleName : path.basename(moduleName);
+      } catch (e) {
+        moduleNameFormatted = "<unknown>";
+      }
       const parts = [
         timestamp,
         level,
