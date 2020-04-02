@@ -2,7 +2,7 @@ const crypto = require("crypto");
 const fs = require("fs").promises;
 const path = require("path");
 const os = require("os");
-const { spawn } = require("child_process");
+const { exec } = require("child_process");
 
 let tmpDir, testSalt;
 
@@ -23,17 +23,28 @@ async function templateTest() {
   const pkgRoot = path.resolve(__dirname, "..");
   const cliRoot = path.join(pkgRoot, "lib/cli-gen.js");
   const cmdLine = `${process.argv[0]} ${cliRoot} proj-${testSalt}`;
-  await execPromise(cmdLine, tmpDir);
+  try {
+    const { stdout, stderr, error } = await execPromise(cmdLine, tmpDir);
+    if (stderr) {
+      console.error(`Stderr:\n${stderr}`);
+    } else {
+      console.log(`Stdout:\n${stdout}\n`);
+      console.log(`Test successful.`);
+    }
+  } catch (error) {
+    console.error(`cli-gen exited with error code ${error.code}.`);
+  }
 
   await tearDown();
 }
 
 async function execPromise(cmdLine, cwd) {
   return new Promise((resolve, reject) =>
-    spawn(
+    exec(
       cmdLine,
       { cwd, stdio: "inherit", shell: true },
-      (err, stdout, stderr) => (err ? reject(err) : resolve({ stdout, stderr }))
+      (error, stdout, stderr) =>
+        error ? reject(error) : resolve({ stdout, stderr, error })
     )
   );
 }
