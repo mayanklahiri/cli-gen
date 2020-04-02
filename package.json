@@ -26,5 +26,7 @@
     "url": "https://github.com/mayanklahiri/cli-gen/issues"
   },
   "homepage": "https://github.com/mayanklahiri/cli-gen#readme",
-  "dependencies": {}
+  "dependencies": {
+    "async": "^3.2.0"
+  }
 }

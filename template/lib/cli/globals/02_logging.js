@@ -10,6 +10,13 @@ const { getCallStack } = require("../../util/caller");
 
 const LOG_FLUSH_WAIT_MS = 200;
 
+const LEVEL_COLORS = {
+  info: x => x,
+  warn: col.yellow,
+  error: col.red,
+  debug: col.gray
+};
+
 (function _initLogging() {
   const env = process.env;
   const isProd = env.NODE_ENV === "production";
@@ -28,7 +35,7 @@ const LOG_FLUSH_WAIT_MS = 200;
       }
       const parts = [
         timestamp,
-        level,
+        LEVEL_COLORS[level](level),
         moduleNameFormatted
           ? col.gray(`[${moduleNameFormatted}:${line}]`)
           : null,
