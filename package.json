@@ -1,7 +1,7 @@
 {
   "name": "cli-gen",
   "bin": "lib/cli-gen.js",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Dependency-free, opinionated node.js CLI skeleton generator.",
   "main": "lib/cli-gen.js",
   "scripts": {
@@ -26,7 +26,5 @@
     "url": "https://github.com/mayanklahiri/cli-gen/issues"
   },
   "homepage": "https://github.com/mayanklahiri/cli-gen#readme",
-  "dependencies": {
-    "async": "^3.2.0"
-  }
+  "dependencies": {}
 }
