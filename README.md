@@ -1,3 +1,6 @@
+![Dependencies](https://david-dm.org/mayanklahiri/cli-gen.svg)
+![Build Status](https://travis-ci.org/mayanklahiri/cli-gen.svg?branch=master)
+
 # cli-gen
 
 Dependency-free, opinionated node.js CLI skeleton generator that is structured to allow automatic rolling upgrades of framework code.
