@@ -1,11 +1,8 @@
 /* cli-gen: auto-generated, do not edit. */
-
 const path = require("path");
-
 const col = require("chalk");
 const winston = require("winston");
 const { combine, timestamp, printf } = winston.format;
-
 const { getCallStack } = require("../../util/caller");
 
 const LOG_FLUSH_WAIT_MS = 200;
@@ -14,7 +11,8 @@ const LEVEL_COLORS = {
   info: x => x,
   warn: col.yellow,
   error: col.red,
-  debug: col.gray
+  debug: col.gray,
+  trace: col.cyan
 };
 
 (function _initLogging() {
@@ -94,9 +92,7 @@ const LEVEL_COLORS = {
           ended = true;
           transports.forEach(t => t.end());
           baseLogger.end();
-          baseLogger.once("finish", () => {
-            resolve();
-          });
+          baseLogger.once("finish", () => resolve());
         }, LOG_FLUSH_WAIT_MS);
       });
     }
