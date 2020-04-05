@@ -1,8 +1,4 @@
 /* cli-gen: auto-generated, do not edit. */
-const col = require("chalk");
-
-const { pathUtil } = global;
-
 module.exports = async function main() {
   process.stdout.write(
     [
