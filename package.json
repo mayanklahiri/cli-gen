@@ -1,7 +1,7 @@
 {
   "name": "cli-gen",
   "bin": "lib/cli-gen.js",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Dependency-free, opinionated node.js CLI skeleton generator.",
   "main": "lib/cli-gen.js",
   "scripts": {

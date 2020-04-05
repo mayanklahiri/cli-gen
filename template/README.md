@@ -5,6 +5,7 @@
 1. **Install build tools and dependencies**: `npm i`
 2. **Install only production dependencies**: `npm i --only=prod`
 3. **Cleanup dependencies**: `rm -rf node_modules`
+4. **Link global commands to working directory**: `[sudo] npm link .`
 
 ### Testing
 
