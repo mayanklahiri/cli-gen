@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 /* cli-gen: auto-generated, do not edit. */
 const program = require("commander");
 const globalLoader = require("./loaders/global-loader");

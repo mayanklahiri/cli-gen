@@ -3,24 +3,24 @@ const path = require("path");
 
 const BASE_PKG_PATH = path.resolve(__dirname, "..", "..");
 
-function basePkgPath(...p) {
+function pkgRoot(...p) {
   return path.join(BASE_PKG_PATH, ...p);
 }
 
 function libRoot(...p) {
-  return basePkgPath("lib", ...p);
+  return pkgRoot("lib", ...p);
 }
 
 function testRoot(...p) {
-  return basePkgPath("__test__", ...p);
+  return pkgRoot("__test__", ...p);
 }
 
 function pkgJson() {
-  return require(basePkgPath("package.json"));
+  return require(pkgRoot("package.json"));
 }
 
 module.exports = {
-  basePkgPath,
+  pkgRoot,
   libRoot,
   testRoot,
   pkgJson

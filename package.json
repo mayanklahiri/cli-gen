@@ -13,12 +13,13 @@
   },
   "keywords": [
     "opinionated",
+    "scaffolding",
     "generator",
     "bootstrapper",
-    "skeleton",
-    "logging",
     "cli",
-    "subcommands"
+    "dev",
+    "build",
+    "tool"
   ],
   "author": "Mayank Lahiri <mlahiri@gmail.com>",
   "license": "Apache-2.0",
