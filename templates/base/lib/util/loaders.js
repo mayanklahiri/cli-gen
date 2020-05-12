@@ -2,8 +2,13 @@
 const fs = require("fs");
 const path = require("path");
 
-module.exports = function globalLoader() {
-  const globalsRoot = path.resolve(__dirname, "..", "globals");
+module.exports = {
+  globalLoader,
+  commandLoader
+};
+
+function globalLoader() {
+  const globalsRoot = path.resolve(__dirname, "globals");
   try {
     const dirListing = fs.readdirSync(globalsRoot);
     if (dirListing.find(i => i === "index.js")) {
@@ -17,4 +22,10 @@ module.exports = function globalLoader() {
     }
     throw e;
   }
-};
+}
+
+function commandLoader(program) {
+  const cmdRoot = path.resolve(__dirname, "commands");
+  const cmdList = fs.readdirSync(cmdRoot);
+  cmdList.forEach(command => require(path.join(cmdRoot, command))(program));
+}

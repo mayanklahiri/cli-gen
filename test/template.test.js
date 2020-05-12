@@ -24,14 +24,9 @@ async function templateTest() {
 
   const pkgRoot = path.resolve(__dirname, "..");
   const cliRoot = path.join(pkgRoot, "lib/cli-gen.js");
-  const cmdLine = `${process.argv[0]} ${cliRoot} --apply proj-${testSalt}`;
+  const cmdLine = `${process.argv[0]} ${cliRoot} --apply`;
   try {
-    const { stdout, stderr } = await shellExec(cmdLine, tmpDir);
-    if (stderr) {
-      log.error(`Stderr:\n${stderr}`);
-    } else {
-      log.info(`Stdout:\n${stdout}\n`);
-    }
+    await shellExec(cmdLine, tmpDir);
   } catch (error) {
     log.error(`cli-gen exited with error: ${error.message}.`);
     log.debug(stderr);
