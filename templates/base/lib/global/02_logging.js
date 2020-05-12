@@ -1,10 +1,12 @@
-/* cli-gen: auto-generated, do not edit. */
+/* cli-gen: auto-generated, do not edit. Remove this line to disable template updates. */
+
 const path = require("path");
-const col = require("chalk");
 const winston = require("winston");
 const { combine, timestamp, printf } = winston.format;
-const { getCallStack } = require("../../util/caller");
 
+const BASE_PATH = pkgRoot();
+const RE_CALLER = /\((.+):(\d+):(\d+)\)$/;
+const RE_INTERNAL_MODULE = /^internal/;
 const LOG_FLUSH_WAIT_MS = 200;
 
 const LEVEL_COLORS = {
@@ -98,3 +100,32 @@ const LEVEL_COLORS = {
     }
   };
 })();
+
+function getCallStack(excludeFile) {
+  const stackTrace = {};
+  Error.captureStackTrace(stackTrace, arguments.caller);
+  const stackLines = stackTrace.stack
+    .split(/\n/gim)
+    .slice(1)
+    .map(stackLine => {
+      const matches = RE_CALLER.exec(stackLine);
+      if (!matches) return;
+      const absPath = matches[1];
+      if (absPath === __filename) return;
+      if (excludeFile && absPath === excludeFile) return;
+      const relPath = path.relative(BASE_PATH, absPath);
+      const modName = relPath.length < absPath.length ? relPath : absPath;
+      if (RE_INTERNAL_MODULE.exec(modName)) return;
+      return matches
+        ? {
+            module: modName,
+            basename: path.basename(relPath),
+            line: parseInt(matches[2], 10),
+            col: parseInt(matches[3], 10)
+          }
+        : null;
+    })
+    .filter(x => x);
+  if (!stackLines) return {};
+  return stackLines[0];
+}

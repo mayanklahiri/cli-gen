@@ -23,23 +23,23 @@ Install the global `cli-gen` executable:
 
 Or use without installing by using `npx` (not `npm`):
 
-`npx cli-gen -h`
+`npx cli-gen`
 
 ## Usage
 
-- Initial use: in a blank directory, run `cli-gen <project name>` to create a new CLI project skeleton. The project name is used to generate a new `package.json` file. Follow the development guidelines below to enable auto-upgrade of framework code.
+- Initial use: in a blank directory, run `cli-gen --apply` to create a new CLI project skeleton. The project name is used to generate a new `package.json` file. Follow the development guidelines below to ensure that any skeleton code can be automatically updated in future releases.
 
-- Upgrade framework: run `cli-gen` in an existing project directory without any arguments to upgrade any auto-generated files. This requires that the development guidelines below are followed.
+- Upgrade boilerplate: run `cli-gen --apply` in an existing project directory. This requires that the development guidelines below are adhered to.
+
+- Dry run: run `cli-gen` without arguments to see what `cli-gen` would have done.
+
+- Link command globally: `npm link .`
 
 ## Development Guidelines
 
-After running `cli-gen <project name>` in an empty directory, you will have the starter skeleton project.
-
 A single CLI command corressponding to your project name will be specfied in `package.json` under the `bin` entry. This command will perform `git`-style subcommands using the `commander` module, while setting up the CLI environment (logging, global helpers, etc.).
 
-The global CLI command can be symbolically linked to a local project directoy using `[sudo] npm link .` for development.
-
-CLI subcommands follow a directory-based structure in the following root folder: **`lib/cli/commands`**. A bare-bones "about" subcommand is created in the `about` folder (and subcommand of the same name).
+CLI subcommands follow a directory-based structure in the following root folder: **`lib/cli/verbs`**. A bare-bones "about" verb is created in the `about` folder.
 
 Following the development guidelines below, user code and framework/skeleton code will be isolated for independent upgrades.
 
@@ -47,7 +47,7 @@ Following the development guidelines below, user code and framework/skeleton cod
 
 - Interface with the framework as independent `commander` subcommands.
 
-New features should start with a subcommand folder in `lib/cli/commands` with its specified set of options.
+New features should start with a subcommand folder in `lib/cli/verbs` with its specified set of options.
 
 ### Guideline 2
 
@@ -58,13 +58,3 @@ Files and directories can be added anywhere, as long as files **do not** include
 ```
 /* cli-gen: auto-generated, do not edit. */
 ```
-
-## Safe Files
-
-The following files will never be overwritten or modified. However, they may be created if they do not exist.
-
-1. `package.json`
-2. `package-lock.json`
-3. `README.md`
-4. `jest.config.js`
-5. `.gitignore`
