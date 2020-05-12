@@ -17,7 +17,8 @@ module.exports = {
   },
   scripts: {
     test: "jest",
-    "test-watch": "jest --watch"
+    "test-watch": "jest --watchAll",
+    "test-smoke": "jest __tests__/smoke"
   },
-  binPath: "lib/cli/cli.js"
+  binPath: "lib/cli.js"
 };

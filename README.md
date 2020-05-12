@@ -33,21 +33,19 @@ Or use without installing by using `npx` (not `npm`):
 
 - Dry run: run `cli-gen` without arguments to see what `cli-gen` would have done.
 
-- Link command globally: `npm link .`
+- Link command globally: `[sudo] npm link`
 
 ## Development Guidelines
 
 A single CLI command corressponding to your project name will be specfied in `package.json` under the `bin` entry. This command will perform `git`-style subcommands using the `commander` module, while setting up the CLI environment (logging, global helpers, etc.).
 
-CLI subcommands follow a directory-based structure in the following root folder: **`lib/cli/verbs`**. A bare-bones "about" verb is created in the `about` folder.
-
-Following the development guidelines below, user code and framework/skeleton code will be isolated for independent upgrades.
+CLI subcommands follow a directory-based structure in the **`lib/verbs`** directory: each subdirectory maps to a different top-level subcommand.
 
 ### Guideline 1
 
 - Interface with the framework as independent `commander` subcommands.
 
-New features should start with a subcommand folder in `lib/cli/verbs` with its specified set of options.
+New features should start with a subcommand folder in `lib/verbs` with its specified set of options.
 
 ### Guideline 2
 
