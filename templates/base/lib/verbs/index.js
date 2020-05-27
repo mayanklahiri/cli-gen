@@ -3,11 +3,9 @@ const fs = require("fs");
 const path = require("path");
 
 module.exports = program => {
-  fs.readdirSync(__dirname).forEach(filename => {
-    const absPath = path.join(__dirname, filename);
-    if (fs.statSync(absPath).isDirectory()) {
-      require(absPath)(program);
-    }
-  });
-  return program;
+  fs.readdirSync(__dirname)
+    .map(filename => path.join(__dirname, filename))
+    .filter(absPath => fs.statSync(absPath).isDirectory())
+    .forEach(absPath => require(absPath)(program));
+  return program; // allow chaining.
 };
